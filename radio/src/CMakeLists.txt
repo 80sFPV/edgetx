@@ -155,6 +155,8 @@ add_definitions(-DFLAVOUR="${FLAVOUR}")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/bitmaps/${BITMAPS_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/storage)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/lua)
 
 include(gui/CMakeLists.txt)
 
