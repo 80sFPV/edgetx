@@ -1,25 +1,29 @@
+#include "sdcard_common.h"  // Die Datei, die `selectModel` enthält
 #include "lua_api.h"
-#include "model_select.h"
 
-// Lua-Funktion, die `selectModel()` aufruft
+// Lua-Wrapper für `selectModel` erstellen
 static int lua_selectModel(lua_State *L)
 {
-    int modelIndex = luaL_checkinteger(L, 1); // Lua-Parameter holen
-    if (modelIndex >= 0 && modelIndex < MAX_MODELS) { // Gültige Modelle prüfen
-        selectModel((uint8_t) modelIndex); // Modellwechsel ausführen
+    // Holen des Modellindex aus Lua
+    int modelIndex = luaL_checkinteger(L, 1);
+    
+    // Sicherstellen, dass der Index gültig ist
+    if (modelIndex >= 0 && modelIndex < MAX_MODELS) {
+        selectModel((uint8_t)modelIndex);  // Modell wechseln
     }
-    return 0;
+    
+    return 0;  // Keine Rückgabewerte
 }
 
-// Lua-Funktionsliste definieren
+// Registrieren der Lua-Funktion
 static const luaL_Reg modelLib[] = {
     { "selectModel", lua_selectModel },
     { NULL, NULL }
 };
 
-// Funktion zum Registrieren der Lua-Funktion
+// Lua-Bibliothek für `selectModel` registrieren
 extern "C" int luaopen_model(lua_State *L)
 {
-    luaL_newlib(L, modelLib);
+    luaL_newlib(L, modelLib);  // Die Bibliothek laden
     return 1;
 }
