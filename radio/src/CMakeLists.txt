@@ -414,6 +414,7 @@ set(SRC
   sbus.cpp
   input_mapping.cpp
   inactivity_timer.cpp
+  lua_model.cpp
   tasks/mixer_task.cpp
   )
 
